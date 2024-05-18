@@ -22,6 +22,14 @@ public class ArtworkController {
         return mav;
     }
 
+    @GetMapping("/artworks/add")
+    public ModelAndView addArtworkForm(HttpSession session) {
+        if (session.getAttribute("user") == null) {
+            return new ModelAndView("redirect:/login");
+        }
+        return new ModelAndView("addArtwork");
+    }
+
     @PostMapping("/artworks/add")
     public String addArtwork(@RequestParam String title, @RequestParam String artist, @RequestParam String year, @RequestParam String imageUrl, HttpSession session) {
         if (session.getAttribute("user") == null) {
@@ -33,7 +41,7 @@ public class ArtworkController {
         newArtwork.setYear(year);
         newArtwork.setImageUrl(imageUrl);
         artworkService.save(newArtwork);
-        return "redirect:/artworks";
+        return "redirect:/dashboard";
     }
 
     @PostMapping("/artworks/delete")
@@ -42,7 +50,7 @@ public class ArtworkController {
             return "redirect:/login";
         }
         artworkService.deleteById(artworkId);
-        return "redirect:/artworks";
+        return "redirect:/dashboard";
     }
 
 }

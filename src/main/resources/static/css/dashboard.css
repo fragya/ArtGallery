@@ -2,11 +2,11 @@
 body, html {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding-top: 60px; /* Üst kısımdaki sabit header için boşluk ayarı */
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Çocuk öğeleri üstte başlat */
     background-color: #f4f4f4;
 }
 
@@ -23,15 +23,20 @@ body, html {
 
 /* Üst Kısım ve Hoş Geldiniz Mesajı */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.header h2 {
+.header h1 {
     margin: 0;
-    color: #28a745; /* Yeşil tema başlık rengi */
+    color: #28a745;
 }
 
 /* Çıkış Yap Düğmesi */
@@ -42,6 +47,7 @@ button {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 button:hover {
@@ -87,7 +93,7 @@ a:hover, .edit:hover, .delete:hover {
     background-color: #218838;
 }
 
-.img-container {
+.img-container img {
     width: 100px;
     height: auto;
 }
